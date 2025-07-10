@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Berrio Clicker</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <div id="tabs">
+    <button onclick="showTab('game')">Game</button>
+    <button onclick="showTab('upgrades')">Upgrades</button>
+    <button onclick="showTab('prestige')">Prestige</button>
+    <button onclick="showTab('casino')">Casino</button>
+    <button onclick="showTab('bank')">Bank</button>
+    <button onclick="showTab('stats')">Statistics</button>
+    <button onclick="showTab('leaderboard')">Leaderboard</button>
+    <button onclick="showTab('settings')">Settings</button>
+  </div>
+  <div id="tab-content">
+    <!-- Content will be loaded here -->
+  </div>
+  <script src="js/prestige.js"></script>
+  <script src="js/upgrades.js"></script>
+  <script src="js/savesystem.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/bank.js"></script>
+  <script src="js/casino.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
