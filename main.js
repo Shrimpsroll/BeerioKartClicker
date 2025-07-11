@@ -1,4 +1,5 @@
 const tabs = ['game', 'upgrades', 'prestige', 'casino', 'bank', 'stats', 'leaderboard', 'settings'];
+window.disableSaving = false;
 
 function showTab(tab) {
   tabs.forEach(t => {
@@ -61,34 +62,23 @@ window.increment = function() {
 };
 
 window.hasCheated = false;
+// Define cheatHandler globally so checkForCheating can use it
+window.cheatHandler = (why = 'unknown') => {
+  if (!window.hasCheated) {
+    window.hasCheated = true;
+    window.console && window.console.log && window.console.log('%c[CHEAT FLAGGED]%c Reason: ' + why, 'color: red; font-weight: bold;', 'color: orange;');
+  }
+};
 window.checkForCheating = function() {
   // Check if points exceed totalPointsEarned or if dev commands were used
   if (window.points > (window.stats?.totalPointsEarned || 0) || window.hasCheated === true) {
-    window.hasCheated = true;
+    window.cheatHandler('points > totalPointsEarned or dev commands used');
   }
   // Check if prestige points exceed total prestiges earned
   if ((window.prestige?.points || 0) > (window.stats?.totalPrestiges || 0)) {
-    window.hasCheated = true;
+    window.cheatHandler('prestige points > total prestiges earned');
   }
 };
 
-// Mark as cheating if any code is run in the console
-if (!window._cheatConsoleGuard) {
-  window._cheatConsoleGuard = true;
-  const cheatHandler = () => { window.hasCheated = true; };
-  // Detect property access in console (works in most browsers)
-  Object.defineProperty(window, 'cheatDetect', {
-    get: function() {
-      cheatHandler();
-      return undefined;
-    },
-    configurable: true
-  });
-  // Print a hidden property to the console to bait access
-  setTimeout(() => {
-    if (window.console && window.console.log) {
-      window.console.log('%cStop! Any use of the console will mark you as a cheater.', 'color: red; font-size: 16px;');
-    }
-  }, 1000);
-}
+
 
