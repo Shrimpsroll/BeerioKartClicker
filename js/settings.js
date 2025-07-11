@@ -19,11 +19,9 @@ if (window.renderPrestige) window.renderPrestige();
   resetGame: function() {
     if (confirm("Are you sure?")) {
       localStorage.removeItem('gameSave');
-      // Clear in-memory state
-      window.points = 0;
-      window.prestige = { points: 0, threshold: 1_000_000 };
-      window.stats = {};
-      location.replace(location.href);
+      setTimeout(() => {
+        location.replace(location.href);
+      }, 500);
     }
   }
 };
@@ -31,11 +29,12 @@ if (window.renderPrestige) window.renderPrestige();
 window.renderSettings = function() {
   document.getElementById('settings-content').innerHTML = `
     <h2>Settings</h2>
-    <button id="show-dev-panel-btn" class="dev-bottom-btn">Show Dev Panel</button>
+    <div style="font-size:0.95em;color:#888;margin-bottom:4px;">Version 1.0.0</div>
+    <!-- <button id=\"show-dev-panel-btn\" class=\"dev-bottom-btn\">Show Dev Panel</button> -->
     <hr>
-    <button id="download-save-btn">Download Save</button>
-    <input type="file" id="upload-save-input" style="display:none" />
-    <button id="upload-save-btn">Upload Save</button>
+    <!-- <button id=\"download-save-btn\">Download Save</button> -->
+    <!-- <input type=\"file\" id=\"upload-save-input\" style=\"display:none\" /> -->
+    <!-- <button id=\"upload-save-btn\">Upload Save</button> -->
     <hr>
     <button id="restart-game-btn" style="background:#e74c3c;">Restart Game</button>
     <hr>
@@ -47,80 +46,46 @@ window.renderSettings = function() {
     </div>
   `;
 
-  // Dev panel logic
-  document.getElementById('show-dev-panel-btn').onclick = function() {
-    const pwd = prompt("Enter dev password:");
-    if (pwd !== "letmein") {
-      alert("Incorrect password.");
-      return;
-    }
-    if (!document.getElementById('dev-panel')) {
-      const devPanel = document.createElement("div");
-      window.hasCheated = true;
-      devPanel.id = "dev-panel";
-      devPanel.style.background = "#222";
-      devPanel.style.color = "#fff";
-      devPanel.style.padding = "10px";
-      devPanel.style.borderRadius = "8px";
-      devPanel.style.marginTop = "10px";
-      devPanel.innerHTML = `
-        <b>Dev Panel</b><br>
-        <button onclick="window.devCommands.addPoints(1000000)">+1M Points</button>
-        <button onclick="window.devCommands.addPrestige(1)">+1 Prestige</button>
-        <button onclick="window.devCommands.resetGame()">Reset Game</button>
-        <button onclick="this.parentElement.remove()">Close</button>
-      `;
-      document.getElementById('settings-content').appendChild(devPanel);
-    }
-  };
+  // Dev panel logic (commented out)
+  // document.getElementById('show-dev-panel-btn').onclick = function() {
+  //   const pwd = prompt("Enter dev password:");
+  //   if (pwd !== "letmein") {
+  //     alert("Incorrect password.");
+  //     return;
+  //   }
+  //   if (!document.getElementById('dev-panel')) {
+  //     const devPanel = document.createElement("div");
+  //     window.hasCheated = true;
+  //     devPanel.id = "dev-panel";
+  //     devPanel.style.background = "#222";
+  //     devPanel.style.color = "#fff";
+  //     devPanel.style.padding = "10px";
+  //     devPanel.style.borderRadius = "8px";
+  //     devPanel.style.marginTop = "10px";
+  //     devPanel.innerHTML = `
+  //       <b>Dev Panel</b><br>
+  //       <button onclick="window.devCommands.addPoints(1000000)">+1M Points</button>
+  //       <button onclick="window.devCommands.addPrestige(1)">+1 Prestige</button>
+  //       <button onclick="window.devCommands.resetGame()">Reset Game</button>
+  //       <button onclick="this.parentElement.remove()">Close</button>
+  //     `;
+  //     document.getElementById('settings-content').appendChild(devPanel);
+  //   }
+  // };
 
-  // Download save
-  document.getElementById('download-save-btn').onclick = function() {
-    const save = localStorage.getItem('gameSave');
-    if (!save) return alert("No save found!");
-    const blob = new Blob([save], {type: "application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "incremental-game-save.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  // Upload save
-  document.getElementById('upload-save-btn').onclick = function() {
-    document.getElementById('upload-save-input').click();
-  };
-  document.getElementById('upload-save-input').onchange = function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      try {
-        JSON.parse(evt.target.result); // Validate JSON
-        localStorage.setItem('gameSave', evt.target.result);
-        alert("Save uploaded! Reloading...");
-        location.reload();
-      } catch {
-        alert("Invalid save file.");
-      }
-    };
-    reader.readAsText(file);
-  };
+  // Download/Upload save buttons are commented out
+  // document.getElementById('download-save-btn').onclick = function() { ... }
+  // document.getElementById('upload-save-btn').onclick = function() { ... }
+  // document.getElementById('upload-save-input').onchange = function(e) { ... }
 
   // Restart game logic
   document.getElementById('restart-game-btn').onclick = function() {
     if (confirm("Are you sure you want to restart your game? This will erase all progress!")) {
       localStorage.removeItem('gameSave');
-      // Clear in-memory state
-      window.points = 0;
-      window.prestige = { points: 0, threshold: 1_000_000 };
-      window.stats = {};
-      window.upgrades = []; // Clear upgrades
-      window.prestigeUpgrades = []; // Clear prestige upgrades
-      location.replace(location.href); // Forces a full reload
+      window.disableSaving = true; // Prevents further saves during restart
+      setTimeout(() => {
+        location.replace(location.href); // Forces a full reload
+      }, 500);
     }
   };
 

@@ -7,6 +7,8 @@ async function hashSaveData(data) {
 }
 
 async function saveGame() {
+  // Prevent saving if window.disableSaving is true
+  if (window.disableSaving) return;
   const data = {
     points: window.points,
     upgrades: window.upgrades.map(u => ({
@@ -25,7 +27,15 @@ async function saveGame() {
 }
 
 async function loadGame() {
-  const save = JSON.parse(localStorage.getItem('gameSave'));
+  let saveRaw = localStorage.getItem('gameSave');
+  if (!saveRaw) return;
+  let save;
+  try {
+    save = JSON.parse(saveRaw);
+  } catch {
+    // Invalid/corrupt save, do not load
+    return;
+  }
   if (save && save.hash) {
     const hash = save.hash;
     delete save.hash;
@@ -36,14 +46,19 @@ async function loadGame() {
       // return;
     }
     if (typeof save.points === 'number') window.points = save.points;
+    // If window.upgrades is not initialized, assign from save
     if (Array.isArray(save.upgrades)) {
-      save.upgrades.forEach(savedUpg => {
-        const upg = window.upgrades.find(u => u.id === savedUpg.id);
-        if (upg) {
-          upg.level = savedUpg.level;
-          upg.cost = savedUpg.cost;
-        }
-      });
+      if (!Array.isArray(window.upgrades) || window.upgrades.length === 0) {
+        window.upgrades = save.upgrades.map(u => ({ ...u }));
+      } else {
+        save.upgrades.forEach(savedUpg => {
+          const upg = window.upgrades.find(u => u.id === savedUpg.id);
+          if (upg) {
+            upg.level = savedUpg.level;
+            upg.cost = savedUpg.cost;
+          }
+        });
+      }
     }
     if (save.prestige) window.prestige = save.prestige;
     if (Array.isArray(save.prestigeUpgrades)) window.prestigeUpgrades = save.prestigeUpgrades;
