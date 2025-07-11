@@ -32,9 +32,9 @@ window.renderSettings = function() {
     <div style="font-size:0.95em;color:#888;margin-bottom:4px;">Version 1.0.0</div>
     <!-- <button id=\"show-dev-panel-btn\" class=\"dev-bottom-btn\">Show Dev Panel</button> -->
     <hr>
-    <!-- <button id=\"download-save-btn\">Download Save</button> -->
-    <!-- <input type=\"file\" id=\"upload-save-input\" style=\"display:none\" /> -->
-    <!-- <button id=\"upload-save-btn\">Upload Save</button> -->
+    <button id="download-save-btn">Download Save</button>
+    <input type="file" id="upload-save-input" style="display:none" />
+    <button id="upload-save-btn">Upload Save</button>
     <hr>
     <button id="restart-game-btn" style="background:#e74c3c;">Restart Game</button>
     <hr>
@@ -45,6 +45,51 @@ window.renderSettings = function() {
       <div id="suggestion-status"></div>
     </div>
   `;
+  // Download Save logic (no hash)
+  document.getElementById('download-save-btn').onclick = function() {
+    if (typeof saveGame === 'function') saveGame();
+    let save = localStorage.getItem('gameSave');
+    if (!save) {
+      alert('No save data found.');
+      return;
+    }
+    const blob = new Blob([save], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'beeriokart_save.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
+  };
+
+  // Upload Save logic
+  document.getElementById('upload-save-btn').onclick = function() {
+    document.getElementById('upload-save-input').click();
+  };
+
+  document.getElementById('upload-save-input').onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      try {
+        const save = evt.target.result;
+        // Optionally validate JSON here if needed
+        window.disableSaving = true; // Prevent auto-save from overwriting
+        localStorage.removeItem('gameSave'); // Remove old save first
+        localStorage.setItem('gameSave', save);
+        alert('Save uploaded! The game will now reload.');
+        setTimeout(() => location.replace(location.href), 500);
+      } catch (err) {
+        alert('Failed to load save file.');
+      }
+    };
+    reader.readAsText(file);
+  };
 
   // Dev panel logic (commented out)
   // document.getElementById('show-dev-panel-btn').onclick = function() {
