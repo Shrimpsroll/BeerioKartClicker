@@ -58,7 +58,12 @@ window.renderLeaderboard = async function() {
     } catch (err) {
       ip = 'unknown';
     }
-    const { error } = await window.supabase.from('leaderboard').insert([{ name, score, prestige, bank, cheated, ip }]);
+    // Get playtime in seconds
+    const playtime = window.stats?.totalPlayTime || 0;
+
+    const { error } = await window.supabase.from('leaderboard').insert([
+      { name, score, prestige, bank, cheated, ip, playtime }
+    ]);
     if (error) {
       alert('Error submitting score.');
       return;

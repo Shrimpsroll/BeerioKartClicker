@@ -228,3 +228,9 @@ body, html {
 input, button, select, textarea {
   font-size: 1em;
 }
+
+img, .clicker-img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: auto;
+}

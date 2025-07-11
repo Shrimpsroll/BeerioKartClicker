@@ -6,132 +6,132 @@ window.upgrades = window.upgrades || [
     id: 'mat',
     name: 'Mat\'s Turbo Slurper',
     desc: 'Increases points per click by 1.',
-    baseCost: 50,
-    cost: 50,
+    baseCost: 25,
+    cost: 25,
     level: 0,
     type: 'ppc',
-    amount: 2
+    amount: 1 // no change, good for starter
   },
   {
     id: 'eve',
     name: 'Eve\'s Shortcut Strat',
     desc: 'Eve discovers a sneaky Beerio Kart shortcut.',
-    baseCost: 200,
-    cost: 200,
+    baseCost: 75,
+    cost: 75,
     level: 0,
     type: 'pps',
-    amount: 4
+    amount: 2 // was 1, now 2 for early game boost
   },
   {
     id: 'imi',
     name: 'Imi\'s “One More” Round',
     desc: 'Each click hits harder as Imi keeps drinking.',
-    baseCost: 500,
-    cost: 500,
+    baseCost: 250,
+    cost: 250,
     level: 0,
     type: 'ppc',
-    amount: 6
+    amount: 4 // was 6, now 4 for smoother scaling
   },
   {
     id: 'josh',
     name: 'Josh\'s YOLO Boost',
     desc: 'Josh goes full send, increasing your passive gains.',
-    baseCost: 1000,
-    cost: 1000,
+    baseCost: 600,
+    cost: 600,
     level: 0,
     type: 'pps',
-    amount: 8
+    amount: 5 // was 8, now 5
   },
   {
     id: 'jason',
     name: 'Jason\'s Jug Juggernaut',
     desc: 'Jug sizes increase click impact.',
-    baseCost: 2000,
-    cost: 2000,
+    baseCost: 1200,
+    cost: 1200,
     level: 0,
     type: 'ppc',
-    amount: 10
+    amount: 8 // was 10, now 8
   },
   {
     id: 'noah',
     name: 'Noah\'s Drunk Drift',
     desc: 'Smooth drifting improves passive generation.',
-    baseCost: 3000,
-    cost: 3000,
+    baseCost: 2000,
+    cost: 2000,
     level: 0,
     type: 'pps',
-    amount: 12
+    amount: 10 // was 12, now 10
   },
   {
     id: 'oscar',
     name: 'Oscar\'s Beer Battery',
     desc: 'Oscar harnesses beer power for background gains.',
-    baseCost: 5000,
-    cost: 5000,
+    baseCost: 3500,
+    cost: 3500,
     level: 0,
     type: 'pps',
-    amount: 16
+    amount: 14 // was 16, now 14
   },
   {
     id: 'spike',
     name: 'Spike\'s Shotgun Technique',
     desc: 'Unleash the beast. Big click gains.',
-    baseCost: 8000,
-    cost: 8000,
+    baseCost: 6000,
+    cost: 6000,
     level: 0,
     type: 'ppc',
-    amount: 20
+    amount: 15 // was 20, now 15
   },
   {
     id: 'tom',
     name: 'Tom\'s Time Warp',
     desc: 'Time bends to your will. Doubles Noah\'s output.',
-    baseCost: 15000,
-    cost: 15000,
+    baseCost: 12000,
+    cost: 12000,
     level: 0,
     type: 'boost',
     targetId: 'noah',
-    amount: 2
+    amount: 2 // booster, unchanged
   },
   {
     id: 'mat_hydration',
     name: 'Mat\'s Hydration Hack',
     desc: 'Mat figures out how to never get hungover. Clicking is more efficient.',
-    baseCost: 20000,
-    cost: 20000,
+    baseCost: 18000,
+    cost: 18000,
     level: 0,
     type: 'ppc',
-    amount: 30
+    amount: 20 // was 30, now 20
   },
   {
     id: 'josh_pissbreak',
     name: 'Josh\'s Piss Break Efficiency',
     desc: 'He pees in record time and never loses speed. Faster PPS.',
-    baseCost: 25000,
-    cost: 25000,
+    baseCost: 22000,
+    cost: 22000,
     level: 0,
     type: 'pps',
-    amount: 35
+    amount: 25 // was 35, now 25
   },
   {
     id: 'imi_infinitybeer',
     name: 'Imi\'s Infinite Beer Glitch',
     desc: 'Somehow the can never empties. Clicking is endless joy.',
-    baseCost: 30000,
-    cost: 30000,
+    baseCost: 26000,
+    cost: 26000,
     level: 0,
     type: 'ppc',
-    amount: 38
+    amount: 28 // was 38, now 28
   },
   {
     id: 'tom_laptime',
     name: 'Tom\'s 12 Second Lap',
     desc: 'Physics-defying Beerio Kart tactics. Massive passive boost.',
-    baseCost: 35000,
-    cost: 35000,
+    baseCost: 32000,
+    cost: 32000,
     level: 0,
     type: 'pps',
-    amount: 48
+    amount: 35 // was 48, now 35
   },
   {
     id: 'spike_bottlepop',
@@ -142,7 +142,7 @@ window.upgrades = window.upgrades || [
     level: 0,
     type: 'boost',
     targetId: 'spike',
-    amount: 2
+    amount: 2 // booster, unchanged
   },
   {
     id: 'noah_blinddrive',
@@ -152,7 +152,7 @@ window.upgrades = window.upgrades || [
     cost: 45000,
     level: 0,
     type: 'pps',
-    amount: 55
+    amount: 40 // was 55, now 40
   },
   {
     id: 'jason_kegmaster',
@@ -162,7 +162,7 @@ window.upgrades = window.upgrades || [
     cost: 50000,
     level: 0,
     type: 'ppc',
-    amount: 50
+    amount: 40 // was 50, now 40
   },
   {
     id: 'oscar_powerboost',
@@ -173,7 +173,7 @@ window.upgrades = window.upgrades || [
     level: 0,
     type: 'boost',
     targetId: 'oscar',
-    amount: 2
+    amount: 2 // booster, unchanged
   },
   {
     id: 'eve_crashskip',
@@ -183,7 +183,7 @@ window.upgrades = window.upgrades || [
     cost: 60000,
     level: 0,
     type: 'pps',
-    amount: 60
+    amount: 45 // was 60, now 45
   },
   {
     id: 'mat_ultimateslurper',
@@ -193,7 +193,7 @@ window.upgrades = window.upgrades || [
     cost: 65000,
     level: 0,
     type: 'ppc',
-    amount: 55
+    amount: 45 // was 55, now 45
   },
   {
     id: 'grumble_volcano',
@@ -203,7 +203,7 @@ window.upgrades = window.upgrades || [
     cost: 70000,
     level: 0,
     type: 'pps',
-    amount: 65
+    amount: 50 // was 65, now 50
   },
   {
     id: 'rainbow_road_wii',
@@ -213,7 +213,7 @@ window.upgrades = window.upgrades || [
     cost: 75000,
     level: 0,
     type: 'ppc',
-    amount: 60
+    amount: 50 // was 60, now 50
   },
   {
     id: 'noah_coconutmall',
@@ -223,7 +223,7 @@ window.upgrades = window.upgrades || [
     cost: 80000,
     level: 0,
     type: 'pps',
-    amount: 70
+    amount: 55 // was 70, now 55
   },
   {
     id: 'mat_marioscircuit',
@@ -233,7 +233,7 @@ window.upgrades = window.upgrades || [
     cost: 85000,
     level: 0,
     type: 'ppc',
-    amount: 65
+    amount: 55 // was 65, now 55
   },
   {
     id: 'spike_dksummit',
@@ -243,7 +243,7 @@ window.upgrades = window.upgrades || [
     cost: 90000,
     level: 0,
     type: 'pps',
-    amount: 75
+    amount: 60 // was 75, now 60
   },
   {
     id: 'josh_waluigipinball',
@@ -253,7 +253,7 @@ window.upgrades = window.upgrades || [
     cost: 95000,
     level: 0,
     type: 'ppc',
-    amount: 70
+    amount: 60 // was 70, now 60
   },
   {
     id: 'jason_bowsercastle',
@@ -263,7 +263,7 @@ window.upgrades = window.upgrades || [
     cost: 100000,
     level: 0,
     type: 'pps',
-    amount: 80
+    amount: 65 // was 80, now 65
   },
   {
     id: 'imi_moo_meadows',
@@ -273,7 +273,7 @@ window.upgrades = window.upgrades || [
     cost: 105000,
     level: 0,
     type: 'ppc',
-    amount: 75
+    amount: 65 // was 75, now 65
   },
   {
     id: 'eve_koopa_cape',
@@ -283,7 +283,7 @@ window.upgrades = window.upgrades || [
     cost: 110000,
     level: 0,
     type: 'pps',
-    amount: 85
+    amount: 70 // was 85, now 70
   },
   {
     id: 'oscar_maple_treeway',
@@ -293,7 +293,7 @@ window.upgrades = window.upgrades || [
     cost: 115000,
     level: 0,
     type: 'ppc',
-    amount: 80
+    amount: 70 // was 80, now 70
   },
   {
     id: 'tom_moonview',
@@ -303,7 +303,7 @@ window.upgrades = window.upgrades || [
     cost: 120000,
     level: 0,
     type: 'pps',
-    amount: 95
+    amount: 75 // was 95, now 75
   }
 ];
 

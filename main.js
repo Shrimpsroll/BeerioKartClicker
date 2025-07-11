@@ -72,3 +72,23 @@ window.checkForCheating = function() {
   }
 };
 
+// Mark as cheating if any code is run in the console
+if (!window._cheatConsoleGuard) {
+  window._cheatConsoleGuard = true;
+  const cheatHandler = () => { window.hasCheated = true; };
+  // Detect property access in console (works in most browsers)
+  Object.defineProperty(window, 'cheatDetect', {
+    get: function() {
+      cheatHandler();
+      return undefined;
+    },
+    configurable: true
+  });
+  // Print a hidden property to the console to bait access
+  setTimeout(() => {
+    if (window.console && window.console.log) {
+      window.console.log('%cStop! Any use of the console will mark you as a cheater.', 'color: red; font-size: 16px;');
+    }
+  }, 1000);
+}
+
