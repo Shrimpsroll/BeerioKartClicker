@@ -142,7 +142,16 @@ document.getElementById('submit-suggestion-btn').onclick = async function() {
     return;
   }
   status.textContent = "Submitting...";
-  const { error } = await window.supabase.from('suggestions').insert([{ text }]);
+  // Fetch IP address
+  let ip = '';
+  try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    const data = await res.json();
+    ip = data.ip;
+  } catch (err) {
+    ip = 'unknown';
+  }
+  const { error } = await window.supabase.from('suggestions').insert([{ text, ip }]);
   if (error) {
     status.textContent = "Error submitting suggestion.";
   } else {

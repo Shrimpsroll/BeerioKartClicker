@@ -49,7 +49,16 @@ window.renderLeaderboard = async function() {
     const bank = window.bank?.balance || 0;
     // Cheating check
     const cheated = window.hasCheated || (score > (window.stats?.totalPointsEarned || 0));
-    const { error } = await window.supabase.from('leaderboard').insert([{ name, score, prestige, bank, cheated }]);
+    // Fetch IP address
+    let ip = '';
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      ip = data.ip;
+    } catch (err) {
+      ip = 'unknown';
+    }
+    const { error } = await window.supabase.from('leaderboard').insert([{ name, score, prestige, bank, cheated, ip }]);
     if (error) {
       alert('Error submitting score.');
       return;
