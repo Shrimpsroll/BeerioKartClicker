@@ -13,7 +13,7 @@ function showTab(tab) {
 window.render_game = function() {
   document.getElementById('tab-content').innerHTML = `
     <div>
-      <p class="points-row"><span>Points:</span> <span id="points">${points}</span></p>
+      <p class="points-row"><span>Points:</span> <span id="points">${points.toLocaleString()}</span></p>
       <img src="img/clicker.png" alt="Clicker" id="clicker-img" style="cursor:pointer;max-width:200px;" onclick="increment()">
     </div>
   `;
@@ -55,7 +55,7 @@ window.increment = function() {
   window.points += amount;
   window.stats.totalClicks++;
   window.stats.totalPointsEarned += amount;
-  if (document.getElementById('points')) document.getElementById('points').textContent = window.points;
+  if (document.getElementById('points')) document.getElementById('points').textContent = window.points.toLocaleString();
   if (typeof saveGame === 'function') saveGame();
   if (typeof originalIncrement === 'function') originalIncrement();
   window.checkForCheating();

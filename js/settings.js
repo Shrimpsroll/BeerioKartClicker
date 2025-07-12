@@ -1,3 +1,5 @@
+// Game version variable
+window.GAME_VERSION = window.GAME_VERSION || '1.0.1';
 window.SUPABASE_URL = window.SUPABASE_URL || 'https://qwdlkzcvvjbjjhrhagax.supabase.co';
 window.SUPABASE_KEY = window.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3ZGxremN2dmpiampocmhhZ2F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwNjc5MzAsImV4cCI6MjA2NzY0MzkzMH0.1RdbkzQbF612lIZncZ7m2yhtQWNc_Bc66RXzrJo_ao0';
 if (!window.supabase || typeof window.supabase.from !== "function") {
@@ -29,7 +31,7 @@ if (window.renderPrestige) window.renderPrestige();
 window.renderSettings = function() {
   document.getElementById('settings-content').innerHTML = `
     <h2>Settings</h2>
-    <div style="font-size:0.95em;color:#888;margin-bottom:4px;">Version 1.0.0</div>
+    <div style="font-size:0.95em;color:#888;margin-bottom:4px;">Version ${window.GAME_VERSION}</div>
     <!-- <button id=\"show-dev-panel-btn\" class=\"dev-bottom-btn\">Show Dev Panel</button> -->
     <hr>
     <button id="download-save-btn">Download Save</button>

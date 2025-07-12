@@ -369,10 +369,10 @@ window.renderUpgrades = function() {
         const canBuy = window.points >= upg.cost;
         return `
           <div style="flex:1 1 220px;min-width:200px;max-width:260px;background:#222;padding:1em;border-radius:8px;box-shadow:0 2px 8px #0002;display:flex;flex-direction:column;align-items:flex-start;">
-            <strong>${upg.name}</strong> <span style='font-size:0.9em;'>(Level: ${upg.level})</span><br>
+            <strong>${upg.name}</strong> <span style='font-size:0.9em;'>(Level: ${upg.level.toLocaleString()})</span><br>
             <small>${upg.desc}</small><br>
             <button onclick="buyUpgrade('${upg.id}')" style="margin-top:0.5em;background:${canBuy ? '#3498db' : '#888'};color:white;width:100%;padding:0.5em 0;border:none;border-radius:4px;font-size:1em;cursor:${canBuy ? 'pointer' : 'not-allowed'};" ${canBuy ? '' : 'disabled'}>
-              Buy (${upg.cost} points)
+              Buy (${upg.cost.toLocaleString()} points)
             </button>
           </div>
         `;
@@ -380,7 +380,7 @@ window.renderUpgrades = function() {
     </div>
   `;
   upgradesListEl.innerHTML = `
-    <p class="points-row"><span>Points:</span> <span id="points">${window.points}</span></p>
+    <p class="points-row"><span>Points:</span> <span id="points">${window.points.toLocaleString()}</span></p>
     <img src="img/clicker.png" alt="Clicker" id="clicker-img" style="cursor:pointer;max-width:200px;" onclick="increment()">
     <br><br>
     ${upgradesList}
@@ -397,7 +397,7 @@ setInterval(() => {
   if (pps > 0) {
     window.points += pps;
     if (window.stats) window.stats.totalPointsEarned += pps;
-    if (document.getElementById('points')) document.getElementById('points').textContent = window.points;
+    if (document.getElementById('points')) document.getElementById('points').textContent = window.points.toLocaleString();
     if (typeof saveGame === 'function') saveGame();
   }
 }, 1000);
@@ -411,7 +411,7 @@ window.increment = function() {
     window.stats.totalClicks++;
     window.stats.totalPointsEarned += amount;
   }
-  if (document.getElementById('points')) document.getElementById('points').textContent = window.points;
+  if (document.getElementById('points')) document.getElementById('points').textContent = window.points.toLocaleString();
   if (typeof saveGame === 'function') saveGame();
   if (typeof originalIncrement === 'function') originalIncrement();
 };
