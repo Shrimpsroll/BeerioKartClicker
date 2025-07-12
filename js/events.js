@@ -15,7 +15,7 @@ window.triggerRandomEvent = function() {
     },
     {
       img: "img/event-bank-lose.png.png",
-      message: "Disaster! You lost all your bank balance!",
+      message: "Disaster! You lost half your bank balance!",
       action: function(popup, closePopup) {
         window.bank.balance = window.bank.balance / 2;
         if (document.getElementById('bank-balance')) document.getElementById('bank-balance').textContent = window.bank.balance;
