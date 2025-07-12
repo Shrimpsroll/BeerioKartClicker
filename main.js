@@ -50,7 +50,18 @@ window.render_settings = function() {
 
 // Simple game logic
 window.points = 0;
+// Anti-autoclicker: limit to 10 clicks per second
+let lastClickTimes = [];
 window.increment = function() {
+  const now = Date.now();
+  // Remove clicks older than 1 second
+  lastClickTimes = lastClickTimes.filter(t => now - t < 1000);
+  if (lastClickTimes.length >= 15) {
+    // Optionally, you can flag cheating here:
+    window.cheatHandler && window.cheatHandler('autoclicker detected');
+    return; // Ignore this click
+  }
+  lastClickTimes.push(now);
   const amount = window.pointsPerClick || 1;
   window.points += amount;
   window.stats.totalClicks++;

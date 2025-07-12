@@ -189,6 +189,7 @@ window.doPrestige = function() {
   if (points >= window.prestige.threshold) {
     window.prestige.points += 1;
     points = 0;
+    window.bank.balance = 0; // Reset bank balance
     // Reset upgrades safely
     if (window.upgrades && Array.isArray(window.upgrades)) {
       window.upgrades.forEach(u => {
