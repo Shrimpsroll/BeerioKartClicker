@@ -45,7 +45,7 @@ window.renderLeaderboard = async function() {
     const name = document.getElementById('leaderboard-name').value.trim();
     if (!name) return;
     const score = window.points || 0;
-    const prestige = window.prestige?.points || 0;
+    const prestige = window.stats?.totalPrestiges || 0;
     const bank = window.bank?.balance || 0;
     // Cheating check
     const cheated = window.hasCheated || (score > (window.stats?.totalPointsEarned || 0));
