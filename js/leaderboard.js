@@ -32,7 +32,7 @@ window.renderLeaderboard = async function() {
 
     document.getElementById('leaderboard-list').innerHTML = `
       <ol>
-        ${data.map(row => `<li>${row.name}: Prestige ${row.prestige}, Score ${row.score}</li>`).join('')}
+        ${data.map(row => `<li>${row.name}: Prestige ${row.prestige.toLocaleString()}, Score ${row.score.toLocaleString()}</li>`).join('')}
       </ol>
     `;
   }
