@@ -36,9 +36,9 @@
     document.getElementById('stats-content').innerHTML = `
       <h2>Statistics</h2>
       <ul>
-        <li>Total Clicks: ${window.stats.totalClicks}</li>
-        <li>Total Points Earned: ${window.stats.totalPointsEarned}</li>
-        <li>Total Prestiges: ${window.stats.totalPrestiges}</li>
+        <li>Total Clicks: ${window.stats.totalClicks.toLocaleString()}</li>
+        <li>Total Points Earned: ${window.stats.totalPointsEarned.toLocaleString()}</li>
+        <li>Total Prestiges: ${window.stats.totalPrestiges.toLocaleString()}</li>
         <li>Total Play Time: ${formatPlayTime(window.stats.totalPlayTime)}</li>
       </ul>
     `;
