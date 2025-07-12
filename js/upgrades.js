@@ -3,36 +3,36 @@
 // Upgrade definitions: just add to this array to expand!
 window.upgrades = window.upgrades || [
   // All upgrades, costs x2, boosts = 1.5, ppc amounts halved (min 1)
-  { id: 'mat', name: "Mat's Turbo Slurper", desc: 'Increases points per click by 1.', baseCost: 50, cost: 50, level: 0, type: 'ppc', amount: 1 },
-  { id: 'eve', name: "Eve's Shortcut Strat", desc: 'Eve discovers a sneaky Beerio Kart shortcut.', baseCost: 150, cost: 150, level: 0, type: 'pps', amount: 2 },
-  { id: 'imi', name: "Imi's “One More” Round", desc: 'Each click hits harder as Imi keeps drinking.', baseCost: 500, cost: 500, level: 0, type: 'ppc', amount: 2 },
-  { id: 'josh', name: "Josh's YOLO Boost", desc: 'Josh goes full send, increasing your passive gains.', baseCost: 1200, cost: 1200, level: 0, type: 'pps', amount: 5 },
-  { id: 'jason', name: "Jason's Jug Juggernaut", desc: 'Jug sizes increase click impact.', baseCost: 2400, cost: 2400, level: 0, type: 'ppc', amount: 4 },
-  { id: 'noah', name: "Noah's Drunk Drift", desc: 'Smooth drifting improves passive generation.', baseCost: 4000, cost: 4000, level: 0, type: 'pps', amount: 10 },
-  { id: 'oscar', name: "Oscar's Beer Battery", desc: 'Oscar harnesses beer power for background gains.', baseCost: 7000, cost: 7000, level: 0, type: 'pps', amount: 14 },
-  { id: 'spike', name: "Spike's Shotgun Technique", desc: 'Unleash the beast. Big click gains.', baseCost: 12000, cost: 12000, level: 0, type: 'ppc', amount: 7 },
-  { id: 'tom', name: "Tom's Time Warp", desc: 'Time bends to your will. Boosts Noah\'s output.', baseCost: 24000, cost: 24000, level: 0, type: 'boost', targetId: 'noah', amount: 1.5 },
-  { id: 'mat_hydration', name: "Mat's Hydration Hack", desc: 'Mat figures out how to never get hungover. Clicking is more efficient.', baseCost: 36000, cost: 36000, level: 0, type: 'ppc', amount: 10 },
-  { id: 'josh_pissbreak', name: "Josh's Piss Break Efficiency", desc: 'He pees in record time and never loses speed. Faster PPS.', baseCost: 44000, cost: 44000, level: 0, type: 'pps', amount: 25 },
-  { id: 'imi_infinitybeer', name: "Imi's Infinite Beer Glitch", desc: 'Somehow the can never empties. Clicking is endless joy.', baseCost: 52000, cost: 52000, level: 0, type: 'ppc', amount: 14 },
-  { id: 'tom_laptime', name: "Tom's 12 Second Lap", desc: 'Physics-defying Beerio Kart tactics. Massive passive boost.', baseCost: 64000, cost: 64000, level: 0, type: 'pps', amount: 35 },
-  { id: 'spike_bottlepop', name: "Spike's Perfect Pop", desc: 'Every bottle opened with precision. Boosts Spike\'s output.', baseCost: 80000, cost: 80000, level: 0, type: 'boost', targetId: 'spike', amount: 1.5 },
-  { id: 'noah_blinddrive', name: "Noah's Blindfold Drive", desc: 'He doesn\'t even need to look anymore. Insane passive gains.', baseCost: 90000, cost: 90000, level: 0, type: 'pps', amount: 40 },
-  { id: 'jason_kegmaster', name: "Jason's Keg Mastery", desc: 'Can carry two kegs at once. Clicks are brutal.', baseCost: 100000, cost: 100000, level: 0, type: 'ppc', amount: 20 },
-  { id: 'oscar_powerboost', name: "Oscar's Dual Cell Battery", desc: 'Boosts Oscar\'s Beer Battery power.', baseCost: 110000, cost: 110000, level: 0, type: 'boost', targetId: 'oscar', amount: 1.5 },
-  { id: 'eve_crashskip', name: "Eve's Crash Skip Glitch", desc: 'Skips crash animations. Huge passive boost.', baseCost: 120000, cost: 120000, level: 0, type: 'pps', amount: 45 },
-  { id: 'mat_ultimateslurper', name: "Mat's Ultimate Slurper", desc: 'His final form. Clicks are ridiculous.', baseCost: 130000, cost: 130000, level: 0, type: 'ppc', amount: 22 },
-  { id: 'grumble_volcano', name: 'Grumble Volcano Drift Zone', desc: 'The track is falling apart, but your reflexes aren’t. Huge PPS from risky plays.', baseCost: 140000, cost: 140000, level: 0, type: 'pps', amount: 50 },
-  { id: 'rainbow_road_wii', name: 'Rainbow Road (Wii Physics)', desc: 'You fall off 11 times but still somehow win. Insane click boost.', baseCost: 150000, cost: 150000, level: 0, type: 'ppc', amount: 25 },
-  { id: 'noah_coconutmall', name: 'Noah at Coconut Mall', desc: 'Shopping, drifting, chugging. Noah’s passive generation skyrockets.', baseCost: 160000, cost: 160000, level: 0, type: 'pps', amount: 55 },
-  { id: 'mat_marioscircuit', name: 'Mat’s Mario Circuit Dominance', desc: 'Absolute control of the kart and the cup. Clicks are clean and fast.', baseCost: 170000, cost: 170000, level: 0, type: 'ppc', amount: 27 },
-  { id: 'spike_dksummit', name: 'Spike’s DK Summit Snowbomb', desc: 'Double flips into double beers. Solid passive snowball.', baseCost: 180000, cost: 180000, level: 0, type: 'pps', amount: 60 },
-  { id: 'josh_waluigipinball', name: 'Josh’s Waluigi Pinball Chaos', desc: 'It’s fast. It’s loud. It’s click mayhem.', baseCost: 190000, cost: 190000, level: 0, type: 'ppc', amount: 30 },
-  { id: 'jason_bowsercastle', name: 'Jason’s Bowser Castle Brutality', desc: 'He doesn’t dodge Thwomps. They dodge him. Big passive gain.', baseCost: 200000, cost: 200000, level: 0, type: 'pps', amount: 65 },
-  { id: 'imi_moo_meadows', name: 'Imi’s Moo Moo Meadows Chill Lap', desc: 'Comfy track. Strong, clean sips. Big click bonuses.', baseCost: 210000, cost: 210000, level: 0, type: 'ppc', amount: 32 },
-  { id: 'eve_koopa_cape', name: 'Eve’s Koopa Cape Teleport', desc: 'Shoots through the pipe like a rocket. Passive gains explode.', baseCost: 220000, cost: 220000, level: 0, type: 'pps', amount: 70 },
-  { id: 'oscar_maple_treeway', name: 'Oscar’s Maple Treeway Jump', desc: 'Midair chug, clean landing, and strong click follow-through.', baseCost: 230000, cost: 230000, level: 0, type: 'ppc', amount: 35 },
-  { id: 'tom_moonview', name: 'Tom’s Moonview Madness', desc: 'Weaving through traffic while drunk? Tom’s got it. Massive PPS.', baseCost: 240000, cost: 240000, level: 0, type: 'pps', amount: 75 }
+  { id: 'mat', name: "Mat's Turbo Slurper", desc: 'Increases points per click by 1.', baseCost: 50, cost: 50, level: 0, type: 'ppc', amount: 1, maxLevel: 99 },
+  { id: 'eve', name: "Eve's Shortcut Strat", desc: 'Eve discovers a sneaky Beerio Kart shortcut.', baseCost: 150, cost: 150, level: 0, type: 'pps', amount: 2, maxLevel: 99 },
+  { id: 'imi', name: "Imi's “One More” Round", desc: 'Each click hits harder as Imi keeps drinking.', baseCost: 500, cost: 500, level: 0, type: 'ppc', amount: 2, maxLevel: 99 },
+  { id: 'josh', name: "Josh's YOLO Boost", desc: 'Josh goes full send, increasing your passive gains.', baseCost: 1200, cost: 1200, level: 0, type: 'pps', amount: 5, maxLevel: 99 },
+  { id: 'jason', name: "Jason's Jug Juggernaut", desc: 'Jug sizes increase click impact.', baseCost: 2400, cost: 2400, level: 0, type: 'ppc', amount: 4, maxLevel: 99 },
+  { id: 'noah', name: "Noah's Drunk Drift", desc: 'Smooth drifting improves passive generation.', baseCost: 4000, cost: 4000, level: 0, type: 'pps', amount: 10, maxLevel: 99 },
+  { id: 'oscar', name: "Oscar's Beer Battery", desc: 'Oscar harnesses beer power for background gains.', baseCost: 7000, cost: 7000, level: 0, type: 'pps', amount: 14, maxLevel: 99 },
+  { id: 'spike', name: "Spike's Shotgun Technique", desc: 'Unleash the beast. Big click gains.', baseCost: 12000, cost: 12000, level: 0, type: 'ppc', amount: 7, maxLevel: 99 },
+  { id: 'tom', name: "Tom's Time Warp", desc: 'Time bends to your will. Boosts Noah\'s output.', baseCost: 24000, cost: 24000, level: 0, type: 'boost', targetId: 'noah', amount: 2, maxLevel: 2 },
+  { id: 'mat_hydration', name: "Mat's Hydration Hack", desc: 'Mat figures out how to never get hungover. Clicking is more efficient.', baseCost: 36000, cost: 36000, level: 0, type: 'ppc', amount: 10, maxLevel: 99 },
+  { id: 'josh_pissbreak', name: "Josh's Piss Break Efficiency", desc: 'He pees in record time and never loses speed. Faster PPS.', baseCost: 44000, cost: 44000, level: 0, type: 'pps', amount: 25, maxLevel: 99 },
+  { id: 'imi_infinitybeer', name: "Imi's Infinite Beer Glitch", desc: 'Somehow the can never empties. Clicking is endless joy.', baseCost: 52000, cost: 52000, level: 0, type: 'ppc', amount: 14, maxLevel: 99 },
+  { id: 'tom_laptime', name: "Tom's 12 Second Lap", desc: 'Physics-defying Beerio Kart tactics. Massive passive boost.', baseCost: 64000, cost: 64000, level: 0, type: 'pps', amount: 35, maxLevel: 99 },
+  { id: 'spike_bottlepop', name: "Spike's Perfect Pop", desc: 'Every bottle opened with precision. Boosts Spike\'s output.', baseCost: 80000, cost: 80000, level: 0, type: 'boost', targetId: 'spike', amount: 2, maxLevel: 2 },
+  { id: 'noah_blinddrive', name: "Noah's Blindfold Drive", desc: 'He doesn\'t even need to look anymore. Insane passive gains.', baseCost: 90000, cost: 90000, level: 0, type: 'pps', amount: 40, maxLevel: 99 },
+  { id: 'jason_kegmaster', name: "Jason's Keg Mastery", desc: 'Can carry two kegs at once. Clicks are brutal.', baseCost: 100000, cost: 100000, level: 0, type: 'ppc', amount: 20, maxLevel: 99 },
+  { id: 'oscar_powerboost', name: "Oscar's Dual Cell Battery", desc: 'Boosts Oscar\'s Beer Battery power.', baseCost: 110000, cost: 110000, level: 0, type: 'boost', targetId: 'oscar', amount: 2, maxLevel: 2 },
+  { id: 'eve_crashskip', name: "Eve's Crash Skip Glitch", desc: 'Skips crash animations. Huge passive boost.', baseCost: 120000, cost: 120000, level: 0, type: 'pps', amount: 45, maxLevel: 99 },
+  { id: 'mat_ultimateslurper', name: "Mat's Ultimate Slurper", desc: 'His final form. Clicks are ridiculous.', baseCost: 130000, cost: 130000, level: 0, type: 'ppc', amount: 22, maxLevel: 99 },
+  { id: 'grumble_volcano', name: 'Grumble Volcano Drift Zone', desc: 'The track is falling apart, but your reflexes aren’t. Huge PPS from risky plays.', baseCost: 140000, cost: 140000, level: 0, type: 'pps', amount: 50, maxLevel: 99 },
+  { id: 'rainbow_road_wii', name: 'Rainbow Road (Wii Physics)', desc: 'You fall off 11 times but still somehow win. Insane click boost.', baseCost: 150000, cost: 150000, level: 0, type: 'ppc', amount: 25, maxLevel: 99 },
+  { id: 'noah_coconutmall', name: 'Noah at Coconut Mall', desc: 'Shopping, drifting, chugging. Noah’s passive generation skyrockets.', baseCost: 160000, cost: 160000, level: 0, type: 'pps', amount: 55, maxLevel: 99 },
+  { id: 'mat_marioscircuit', name: 'Mat’s Mario Circuit Dominance', desc: 'Absolute control of the kart and the cup. Clicks are clean and fast.', baseCost: 170000, cost: 170000, level: 0, type: 'ppc', amount: 27, maxLevel: 99 },
+  { id: 'spike_dksummit', name: 'Spike’s DK Summit Snowbomb', desc: 'Double flips into double beers. Solid passive snowball.', baseCost: 180000, cost: 180000, level: 0, type: 'pps', amount: 60, maxLevel: 99 },
+  { id: 'josh_waluigipinball', name: 'Josh’s Waluigi Pinball Chaos', desc: 'It’s fast. It’s loud. It’s click mayhem.', baseCost: 190000, cost: 190000, level: 0, type: 'ppc', amount: 30, maxLevel: 99 },
+  { id: 'jason_bowsercastle', name: 'Jason’s Bowser Castle Brutality', desc: 'He doesn’t dodge Thwomps. They dodge him. Big passive gain.', baseCost: 200000, cost: 200000, level: 0, type: 'pps', amount: 65, maxLevel: 99 },
+  { id: 'imi_moo_meadows', name: 'Imi’s Moo Moo Meadows Chill Lap', desc: 'Comfy track. Strong, clean sips. Big click bonuses.', baseCost: 210000, cost: 210000, level: 0, type: 'ppc', amount: 32, maxLevel: 99 },
+  { id: 'eve_koopa_cape', name: 'Eve’s Koopa Cape Teleport', desc: 'Shoots through the pipe like a rocket. Passive gains explode.', baseCost: 220000, cost: 220000, level: 0, type: 'pps', amount: 70, maxLevel: 99 },
+  { id: 'oscar_maple_treeway', name: 'Oscar’s Maple Treeway Jump', desc: 'Midair chug, clean landing, and strong click follow-through.', baseCost: 230000, cost: 230000, level: 0, type: 'ppc', amount: 35, maxLevel: 99 },
+  { id: 'tom_moonview', name: 'Tom’s Moonview Madness', desc: 'Weaving through traffic while drunk? Tom’s got it. Massive PPS.', baseCost: 240000, cost: 240000, level: 0, type: 'pps', amount: 75, maxLevel: 99 }
 ];
 
 // Helper: get upgrade by id
@@ -73,10 +73,17 @@ window.recalculatePointsPerSecond = function() {
 window.buyUpgrade = function(id) {
   const upg = getUpgrade(id);
   if (!upg) return;
+  // Default maxLevel to 99 if not set
+  if (typeof upg.maxLevel !== 'number') upg.maxLevel = 99;
   if (window.points >= upg.cost) {
+    if (upg.level >= upg.maxLevel) return;
     window.points -= upg.cost;
     upg.level++;
-    upg.cost = Math.floor(upg.baseCost * Math.pow(1.5, upg.level));
+    if (upg.level >= upg.maxLevel) {
+      upg.cost = Infinity;
+    } else {
+      upg.cost = Math.floor(upg.baseCost * Math.pow(1.5, upg.level));
+    }
     window.recalculatePointsPerClick();
     window.recalculatePointsPerSecond();
     if (window.stats) window.stats.totalPointsEarned += 0; // for stats compatibility

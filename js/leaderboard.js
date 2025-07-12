@@ -18,9 +18,11 @@ window.renderLeaderboard = async function() {
 
   // Fetch and display leaderboard
   async function loadLeaderboard() {
+    const currentVersion = window.GAME_VERSION || '1.0.0';
     const { data, error } = await window.supabase
       .from('leaderboard')
       .select('*')
+      .eq('version', currentVersion)
       .order('prestige', { ascending: false })
       .order('score', { ascending: false })
       .limit(10);
@@ -42,11 +44,12 @@ window.renderLeaderboard = async function() {
   // Handle score submission
   document.getElementById('submit-score-form').onsubmit = async function(e) {
     e.preventDefault();
-    const name = document.getElementById('leaderboard-name').value.trim();
+    const name = String(document.getElementById('leaderboard-name').value).trim();
     if (!name) return;
     const score = window.points || 0;
     const prestige = window.stats?.totalPrestiges || 0;
     const bank = window.bank?.balance || 0;
+    const version = String(window.GAME_VERSION || '1.0.0');
     // Cheating check
     const cheated = window.hasCheated || (score > (window.stats?.totalPointsEarned || 0));
     // Fetch IP address
@@ -62,9 +65,10 @@ window.renderLeaderboard = async function() {
     const playtime = window.stats?.totalPlayTime || 0;
 
     const { error } = await window.supabase.from('leaderboard').insert([
-      { name, score, prestige, bank, cheated, ip, playtime }
+      { name, score, prestige, bank, cheated, ip, playtime, version }
     ]);
     if (error) {
+      console.error('Leaderboard submit error:', error);
       alert('Error submitting score.');
       return;
     }
