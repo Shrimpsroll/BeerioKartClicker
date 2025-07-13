@@ -1,3 +1,24 @@
+
+.ppc-row, .pps-row {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0 auto 2px auto;
+}
+
+.ppc-row {
+  color: #4cd137;
+}
+
+.pps-row {
+  color: #00b894;
+}
+
+#ppc, #pps {
+  font-weight: bold;
+  font-size: inherit;
+  margin-left: 6px;
+}
 /* General styles */
 body {
   background: #181c24;
@@ -76,7 +97,7 @@ input[type="text"], input[type="file"] {
   font-size: 2em;
   font-weight: bold;
   color: #fbc531;
-  margin: 0 auto 18px auto;
+  margin: 0 auto 4px auto;
 }
 
 #points {

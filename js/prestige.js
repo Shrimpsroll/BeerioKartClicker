@@ -124,9 +124,13 @@ window.renderPrestige = function() {
   const canPrestige = points >= (window.prestige?.threshold ?? 1_000_000);
   const threshold = window.prestige?.threshold ?? 1_000_000;
   const prestigePoints = window.prestige?.points ?? 0;
+  const ppc = typeof window.pointsPerClick === 'number' ? window.pointsPerClick : 1;
+  const pps = typeof window.pointsPerSecond === 'number' ? window.pointsPerSecond : 0;
   prestigeContentEl.innerHTML = `
     <div>
-      <p class="points-row"><span>Points:</span> <span id="points">${points}</span></p>
+      <p class="points-row"><span>Points:</span> <span id="points">${points.toLocaleString()}</span></p>
+      <p class="ppc-row"><span>PPC:</span> <span id="ppc">${ppc.toLocaleString()}</span></p>
+      <p class="pps-row"><span>PPS:</span> <span id="pps">${pps.toLocaleString()}</span></p>
       <img src="img/clicker.png" alt="Clicker" id="clicker-img" style="cursor:pointer;max-width:200px;" onclick="increment()">
       <p>Prestige Points: <span id="prestige-points" class="prestige-counter">${prestigePoints}</span></p>
       <p>Reach ${threshold.toLocaleString()} points to prestige.</p>
