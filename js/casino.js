@@ -27,8 +27,8 @@ window.renderCasino = function() {
   document.getElementById('coin-bet').value = defaultBet;
 
   // --- Rigging variables for slot machine ---
-  let jackpotChance = 0.10;
-  let smallWinChance = 0.20;
+  let jackpotChance = 0.02;
+  let smallWinChance = 0.1;
 
   // Check for prestige upgrade
   if (window.prestigeUpgrades && window.prestigeUpgrades.find && window.prestigeUpgrades.find(u => u.id === "betterSlots" && u.bought)) {
@@ -56,6 +56,7 @@ window.renderCasino = function() {
     const symbols = ["🍒", "🍋", "🔔", "⭐", "7️⃣"];
     let reels;
     let payout = 0;
+    let won = false;
 
     // Rigged odds using variables
     const roll = Math.random();
@@ -64,6 +65,7 @@ window.renderCasino = function() {
       const sym = symbols[Math.floor(Math.random() * symbols.length)];
       reels = [sym, sym, sym];
       payout = bet * 10;
+      won = true;
       document.getElementById('slot-message').textContent = "JACKPOT! You win " + payout + " points!";
     } else if (roll < SLOT_JACKPOT_CHANCE + SLOT_SMALLWIN_CHANCE) {
       // Small win (two match)
@@ -71,6 +73,7 @@ window.renderCasino = function() {
       const sym2 = symbols[Math.floor(Math.random() * symbols.length)];
       reels = [sym1, sym1, sym2];
       payout = bet * 2;
+      won = true;
       document.getElementById('slot-message').textContent = "Nice! You win " + payout + " points!";
     } else {
       // No win (all different)
@@ -84,6 +87,10 @@ window.renderCasino = function() {
 
     document.getElementById('slot-result').textContent = reels.join(" ");
     window.points += payout;
+    if (won && window.stats) {
+      window.stats.totalPointsEarned = (window.stats.totalPointsEarned || 0) + payout;
+      window.stats.totalCasinoWins = (window.stats.totalCasinoWins || 0) + 1;
+    }
     if (document.getElementById('points')) document.getElementById('points').textContent = window.points;
     if (typeof saveGame === 'function') saveGame();
   };
@@ -107,6 +114,10 @@ window.renderCasino = function() {
     if (flip === choice) {
       const payout = bet * 2;
       window.points += payout;
+      if (window.stats) {
+        window.stats.totalPointsEarned = (window.stats.totalPointsEarned || 0) + payout;
+        window.stats.totalCasinoWins = (window.stats.totalCasinoWins || 0) + 1;
+      }
       document.getElementById('coin-result').textContent = `It's ${flip}! You win ${payout} points!`;
     } else {
       document.getElementById('coin-result').textContent = `It's ${flip}. You lost!`;
