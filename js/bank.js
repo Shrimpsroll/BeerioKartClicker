@@ -1,7 +1,7 @@
 // Bank state
 window.bank = window.bank || {
   balance: 0,
-  interestRate: 0.02, // 2% per tick
+  interestRate: 0.03, // 3% per tick
   taxRate: 0.10, // 10% tax
 };
 
