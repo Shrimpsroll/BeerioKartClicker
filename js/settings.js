@@ -47,25 +47,39 @@ window.renderSettings = function() {
       <div id="suggestion-status"></div>
     </div>
   `;
-  // Download Save logic (no hash)
-  document.getElementById('download-save-btn').onclick = function() {
+  // Download Save logic (AES-GCM encrypted with static key)
+  document.getElementById('download-save-btn').onclick = async function() {
     if (typeof saveGame === 'function') saveGame();
     let save = localStorage.getItem('gameSave');
     if (!save) {
       alert('No save data found.');
       return;
     }
-    const blob = new Blob([save], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'beeriokart_save.json';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 100);
+    // Static key and IV (should be 32 bytes for key, 12 bytes for IV)
+    const keyBytes = new Uint8Array([99,42,17,88,201,33,77,5,9,111,222,123,44,55,66,77,88,99,101,102,103,104,105,106,107,108,109,110,111,112,113,114]);
+    const iv = new Uint8Array([1,2,3,4,5,6,7,8,9,10,11,12]);
+    const enc = new TextEncoder();
+    try {
+      const key = await window.crypto.subtle.importKey(
+        'raw', keyBytes, {name: 'AES-GCM'}, false, ['encrypt']);
+      const ciphertext = new Uint8Array(await window.crypto.subtle.encrypt(
+        {name: 'AES-GCM', iv}, key, enc.encode(save)));
+      // Save as base64
+      const b64 = btoa(String.fromCharCode(...ciphertext));
+      const blob = new Blob([b64], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'beeriokart_save.enc';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
+    } catch (err) {
+      alert('Encryption failed: ' + err);
+    }
   };
 
   // Upload Save logic
@@ -77,17 +91,27 @@ window.renderSettings = function() {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = function(evt) {
+    reader.onload = async function(evt) {
       try {
-        const save = evt.target.result;
+        // Static key and IV (must match download)
+        const keyBytes = new Uint8Array([99,42,17,88,201,33,77,5,9,111,222,123,44,55,66,77,88,99,101,102,103,104,105,106,107,108,109,110,111,112,113,114]);
+        const iv = new Uint8Array([1,2,3,4,5,6,7,8,9,10,11,12]);
+        const enc = new TextEncoder();
+        const dec = new TextDecoder();
+        const b64 = evt.target.result;
+        const ciphertext = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+        const key = await window.crypto.subtle.importKey(
+          'raw', keyBytes, {name: 'AES-GCM'}, false, ['decrypt']);
+        const decrypted = dec.decode(await window.crypto.subtle.decrypt(
+          {name: 'AES-GCM', iv}, key, ciphertext));
         // Optionally validate JSON here if needed
         window.disableSaving = true; // Prevent auto-save from overwriting
         localStorage.removeItem('gameSave'); // Remove old save first
-        localStorage.setItem('gameSave', save);
+        localStorage.setItem('gameSave', decrypted);
         alert('Save uploaded! The game will now reload.');
         setTimeout(() => location.replace(location.href), 500);
       } catch (err) {
-        alert('Failed to load save file.');
+        alert('Failed to load or decrypt save file.');
       }
     };
     reader.readAsText(file);
