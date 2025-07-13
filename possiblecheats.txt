@@ -1,0 +1,1 @@
+most likely would be changing the variables in the upgrades. - fix is to track every variable. dont really wanna do

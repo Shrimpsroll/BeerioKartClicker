@@ -27,8 +27,8 @@ window.renderCasino = function() {
   document.getElementById('coin-bet').value = defaultBet;
 
   // --- Rigging variables for slot machine ---
-  let jackpotChance = 0.01;
-  let smallWinChance = 0.09;
+  let jackpotChance = 0.10;
+  let smallWinChance = 0.20;
 
   // Check for prestige upgrade
   if (window.prestigeUpgrades && window.prestigeUpgrades.find && window.prestigeUpgrades.find(u => u.id === "betterSlots" && u.bought)) {

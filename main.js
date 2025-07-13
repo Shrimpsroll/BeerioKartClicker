@@ -1,5 +1,8 @@
 const tabs = ['game', 'upgrades', 'prestige', 'casino', 'bank', 'stats', 'leaderboard', 'settings'];
 window.disableSaving = false;
+// Simple game logic
+window.points = 0;
+
 
 function showTab(tab) {
   tabs.forEach(t => {
@@ -48,15 +51,14 @@ window.render_settings = function() {
   window.renderSettings();
 };
 
-// Simple game logic
-window.points = 0;
-// Anti-autoclicker: limit to 10 clicks per second
+
+// Anti-autoclicker: limit to 21 clicks per second
 let lastClickTimes = [];
 window.increment = function() {
   const now = Date.now();
   // Remove clicks older than 1 second
   lastClickTimes = lastClickTimes.filter(t => now - t < 1000);
-  if (lastClickTimes.length >= 15) {
+  if (lastClickTimes.length >= 21) {
     // Optionally, you can flag cheating here:
     window.cheatHandler && window.cheatHandler('autoclicker detected');
     return; // Ignore this click
@@ -72,24 +74,63 @@ window.increment = function() {
   window.checkForCheating();
 };
 
-window.hasCheated = false;
+
 // Define cheatHandler globally so checkForCheating can use it
 window.cheatHandler = (why = 'unknown') => {
   if (!window.hasCheated) {
     window.hasCheated = true;
-    window.console && window.console.log && window.console.log('%c[CHEAT FLAGGED]%c Reason: ' + why, 'color: red; font-weight: bold;', 'color: orange;');
   }
+  window.console && window.console.log && window.console.log('%c[CHEAT FLAGGED]%c Reason: ' + why, 'color: red; font-weight: bold;', 'color: orange;');
 };
 window.checkForCheating = function() {
-  // Check if points exceed totalPointsEarned or if dev commands were used
-  if (window.points > (window.stats?.totalPointsEarned || 0) || window.hasCheated === true) {
+  // Only call cheatHandler if a new cheat is detected
+  if (window.points > (window.stats?.totalPointsEarned || 0)) {
     window.cheatHandler('points > totalPointsEarned or dev commands used');
   }
-  // Check if prestige points exceed total prestiges earned
   if ((window.prestige?.points || 0) > (window.stats?.totalPrestiges || 0)) {
     window.cheatHandler('prestige points > total prestiges earned');
   }
+  // Do not call cheatHandler just because hasCheated is true
 };
 
 
+// --- DevTools detection (commented out, enable if needed) ---
+/*
+let devtoolsOpen = false;
+setInterval(() => {
+  const widthThreshold = window.outerWidth - window.innerWidth > 100;
+  const heightThreshold = window.outerHeight - window.innerHeight > 100;
+  if (widthThreshold || heightThreshold) {
+    if (!devtoolsOpen) {
+      devtoolsOpen = true;
+      window.cheatHandler('DevTools opened');
+    }
+  } else {
+    devtoolsOpen = false;
+  }
+}, 1000);
+*/
 
+
+// Make hasCheated a tracked variable that can only be set to true, and cannot be set back to false
+let _hasCheated = false;
+Object.defineProperty(window, 'hasCheated', {
+  get() { return _hasCheated; },
+  set(v) {
+    // Only allow setting to true, and never allow setting to false
+    if (v === true && !_hasCheated) {
+      _hasCheated = true;
+    } else if (v === false) {
+      if (typeof window.cheatHandler === 'function') {
+        window.cheatHandler('Attempted to set hasCheated to false (not allowed)');
+      }
+      // Ignore silently or warn, but never set to false
+    } else if (_hasCheated && v !== true) {
+      if (typeof window.cheatHandler === 'function') {
+        window.cheatHandler('Attempted to change hasCheated after it was set to true');
+      }
+    }
+  },
+  configurable: false,
+  enumerable: true
+});

@@ -64,7 +64,8 @@ async function loadGame() {
     if (Array.isArray(save.prestigeUpgrades)) window.prestigeUpgrades = save.prestigeUpgrades;
     if (save.stats) window.stats = save.stats;
     if (save.bank) window.bank = save.bank;
-    if (typeof save.hasCheated === 'boolean') window.hasCheated = save.hasCheated || window.hasCheated;
+    // Only set hasCheated to true if the save hasCheated is true; never set to false
+    if (save.hasCheated === true) window.hasCheated = true;
   }
   // Recalculate derived variables after loading
   if (typeof window.recalculatePointsPerClick === 'function') window.recalculatePointsPerClick();

@@ -45,10 +45,10 @@ window.triggerRandomEvent = function() {
         let popupTabPenaltyActive = true;
         function popupTabPenaltyListener() {
           if (popupTabPenaltyActive && document.hidden) {
-            window.points = -100;
+            window.points = window.points * -1;
             if (document.getElementById('points')) document.getElementById('points').textContent = window.points;
             if (typeof saveGame === 'function') saveGame();
-            alert("You changed tabs during the math event! Your points are now -100.");
+            alert("You changed tabs during the math event! Your points are now negative.");
             localClosePopup();
           }
         }
