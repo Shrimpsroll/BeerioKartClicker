@@ -2,14 +2,14 @@
 
 // Upgrade definitions: just add to this array to expand!
 window.upgrades = window.upgrades || [
-  { id: 'mat', name: "Mat's Turbo Slurper", desc: 'Increases points per click by 1.', baseCost: 40, cost: 40, level: 0, type: 'ppc', amount: 1, maxLevel: 99 },
-  { id: 'eve', name: "Eve's Shortcut Strat", desc: 'Eve discovers a sneaky Beerio Kart shortcut.', baseCost: 120, cost: 120, level: 0, type: 'pps', amount: 2.4, maxLevel: 99 },
+  { id: 'mat', name: "Mat's Turbo Slurper", desc: 'Increases points per click by 1.', baseCost: 40, cost: 40, level: 0, type: 'ppc', amount: 2, maxLevel: 99 },
+  { id: 'eve', name: "Eve's Shortcut Strat", desc: 'Eve discovers a sneaky Beerio Kart shortcut.', baseCost: 120, cost: 120, level: 0, type: 'pps', amount: 2, maxLevel: 99 },
   { id: 'imi', name: "Imi's “One More” Round", desc: 'Each click hits harder as Imi keeps drinking.', baseCost: 400, cost: 400, level: 0, type: 'ppc', amount: 2, maxLevel: 99 },
   { id: 'josh', name: "Josh's YOLO Boost", desc: 'Josh goes full send, increasing your passive gains.', baseCost: 960, cost: 960, level: 0, type: 'pps', amount: 6, maxLevel: 99 },
   { id: 'jason', name: "Jason's Jug Juggernaut", desc: 'Jug sizes increase click impact.', baseCost: 1920, cost: 1920, level: 0, type: 'ppc', amount: 4, maxLevel: 99 },
   { id: 'noah', name: "Noah's Drunk Drift", desc: 'Smooth drifting improves passive generation.', baseCost: 3200, cost: 3200, level: 0, type: 'pps', amount: 12, maxLevel: 99 },
-  { id: 'oscar', name: "Oscar's Beer Battery", desc: 'Oscar harnesses beer power for background gains.', baseCost: 5600, cost: 5600, level: 0, type: 'pps', amount: 16.8, maxLevel: 99 },
-  { id: 'spike', name: "Spike's Shotgun Technique", desc: 'Unleash the beast. Big click gains.', baseCost: 9600, cost: 9600, level: 0, type: 'ppc', amount: 7, maxLevel: 99 },
+  { id: 'oscar', name: "Oscar's Beer Battery", desc: 'Oscar harnesses beer power for background gains.', baseCost: 5600, cost: 5600, level: 0, type: 'pps', amount: 16, maxLevel: 99 },
+  { id: 'spike', name: "Spike's Shotgun Technique", desc: 'Unleash the beast. Big click gains.', baseCost: 9600, cost: 9600, level: 0, type: 'ppc', amount: 8, maxLevel: 99 },
   { id: 'tom', name: "Tom's Time Warp", desc: 'Time bends to your will. Boosts Noah\'s output.', baseCost: 19200, cost: 19200, level: 0, type: 'boost', targetId: 'noah', amount: 2, maxLevel: 2 },
   { id: 'mat_hydration', name: "Mat's Hydration Hack", desc: 'Mat figures out how to never get hungover. Clicking is more efficient.', baseCost: 28800, cost: 28800, level: 0, type: 'ppc', amount: 10, maxLevel: 99 },
   { id: 'josh_pissbreak', name: "Josh's Piss Break Efficiency", desc: 'He pees in record time and never loses speed. Faster PPS.', baseCost: 35200, cost: 35200, level: 0, type: 'pps', amount: 30, maxLevel: 99 },
@@ -22,15 +22,15 @@ window.upgrades = window.upgrades || [
   { id: 'eve_crashskip', name: "Eve's Crash Skip Glitch", desc: 'Skips crash animations. Huge passive boost.', baseCost: 96000, cost: 96000, level: 0, type: 'pps', amount: 54, maxLevel: 99 },
   { id: 'mat_ultimateslurper', name: "Mat's Ultimate Slurper", desc: 'His final form. Clicks are ridiculous.', baseCost: 104000, cost: 104000, level: 0, type: 'ppc', amount: 22, maxLevel: 99 },
   { id: 'grumble_volcano', name: 'Grumble Volcano Drift Zone', desc: 'The track is falling apart, but your reflexes aren’t. Huge PPS from risky plays.', baseCost: 112000, cost: 112000, level: 0, type: 'pps', amount: 60, maxLevel: 99 },
-  { id: 'rainbow_road_wii', name: 'Rainbow Road (Wii Physics)', desc: 'You fall off 11 times but still somehow win. Insane click boost.', baseCost: 120000, cost: 120000, level: 0, type: 'ppc', amount: 25, maxLevel: 99 },
+  { id: 'rainbow_road_wii', name: 'Rainbow Road (Wii Physics)', desc: 'You fall off 11 times but still somehow win. Insane click boost.', baseCost: 120000, cost: 120000, level: 0, type: 'ppc', amount: 26, maxLevel: 99 },
   { id: 'noah_coconutmall', name: 'Noah at Coconut Mall', desc: 'Shopping, drifting, chugging. Noah’s passive generation skyrockets.', baseCost: 128000, cost: 128000, level: 0, type: 'pps', amount: 66, maxLevel: 99 },
-  { id: 'mat_marioscircuit', name: 'Mat’s Mario Circuit Dominance', desc: 'Absolute control of the kart and the cup. Clicks are clean and fast.', baseCost: 136000, cost: 136000, level: 0, type: 'ppc', amount: 27, maxLevel: 99 },
+  { id: 'mat_marioscircuit', name: 'Mat’s Mario Circuit Dominance', desc: 'Absolute control of the kart and the cup. Clicks are clean and fast.', baseCost: 136000, cost: 136000, level: 0, type: 'ppc', amount: 28, maxLevel: 99 },
   { id: 'spike_dksummit', name: 'Spike’s DK Summit Snowbomb', desc: 'Double flips into double beers. Solid passive snowball.', baseCost: 144000, cost: 144000, level: 0, type: 'pps', amount: 72, maxLevel: 99 },
   { id: 'josh_waluigipinball', name: 'Josh’s Waluigi Pinball Chaos', desc: 'It’s fast. It’s loud. It’s click mayhem.', baseCost: 152000, cost: 152000, level: 0, type: 'ppc', amount: 30, maxLevel: 99 },
   { id: 'jason_bowsercastle', name: 'Jason’s Bowser Castle Brutality', desc: 'He doesn’t dodge Thwomps. They dodge him. Big passive gain.', baseCost: 160000, cost: 160000, level: 0, type: 'pps', amount: 78, maxLevel: 99 },
   { id: 'imi_moo_meadows', name: 'Imi’s Moo Moo Meadows Chill Lap', desc: 'Comfy track. Strong, clean sips. Big click bonuses.', baseCost: 168000, cost: 168000, level: 0, type: 'ppc', amount: 32, maxLevel: 99 },
   { id: 'eve_koopa_cape', name: 'Eve’s Koopa Cape Teleport', desc: 'Shoots through the pipe like a rocket. Passive gains explode.', baseCost: 176000, cost: 176000, level: 0, type: 'pps', amount: 84, maxLevel: 99 },
-  { id: 'oscar_maple_treeway', name: 'Oscar’s Maple Treeway Jump', desc: 'Midair chug, clean landing, and strong click follow-through.', baseCost: 184000, cost: 184000, level: 0, type: 'ppc', amount: 35, maxLevel: 99 },
+  { id: 'oscar_maple_treeway', name: 'Oscar’s Maple Treeway Jump', desc: 'Midair chug, clean landing, and strong click follow-through.', baseCost: 184000, cost: 184000, level: 0, type: 'ppc', amount: 36, maxLevel: 99 },
   { id: 'tom_moonview', name: 'Tom’s Moonview Madness', desc: 'Weaving through traffic while drunk? Tom’s got it. Massive PPS.', baseCost: 192000, cost: 192000, level: 0, type: 'pps', amount: 90, maxLevel: 99 }
 ];
 
