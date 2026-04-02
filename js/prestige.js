@@ -45,12 +45,12 @@ window.prestigeUpgrades = [
     effect: function() { return this.bought; }
   },
   {
-    id: "autoEve",
-    name: "Eve's Shortcut Bot",
-    description: "Eve's AI finds every shortcut. Auto-buys Eve upgrades.",
+    id: "autoDrake",
+    name: "Drake's Shortcut Bot",
+    description: "Drake's AI finds every shortcut. Auto-buys Drake upgrades.",
     cost: 4,
     bought: false,
-    autoTargets: ['eve'],
+    autoTargets: ['drake'],
     effect: function() { return this.bought; }
   },
   {
