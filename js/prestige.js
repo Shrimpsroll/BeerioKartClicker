@@ -1,6 +1,6 @@
 window.prestige = {
   points: 0,
-  threshold: 1_000_000, // Start at 1 million
+  threshold: 10_000_000_000, // Start at 10 billion
 };
 
 // Prestige upgrade definitions
@@ -133,7 +133,7 @@ window.renderPrestige = function() {
       <p class="pps-row"><span>PPS:</span> <span id="pps">${pps.toLocaleString()}</span></p>
       <img src="img/clicker.png" alt="Clicker" id="clicker-img" style="cursor:pointer;max-width:200px;" onclick="increment()">
       <p>Prestige Points: <span id="prestige-points" class="prestige-counter">${prestigePoints}</span></p>
-      <p>Reach ${threshold.toLocaleString()} points to prestige.</p>
+      <p>Reach ${window.formatNumber(threshold)} points to prestige.</p>
       <button onclick="doPrestige()" ${canPrestige ? '' : 'disabled'}>Prestige!</button>
       <div id="prestige-upgrades"></div>
     </div>
@@ -202,7 +202,7 @@ window.doPrestige = function() {
       });
     }
     // Increase threshold (e.g., double it)
-    window.prestige.threshold = Math.floor(window.prestige.threshold * 1.5);
+    window.prestige.threshold = Math.floor(window.prestige.threshold * (1.5 * window.prestige.points));
     saveGame();
     window.renderPrestige();
     if (window.renderUpgrades) window.renderUpgrades();

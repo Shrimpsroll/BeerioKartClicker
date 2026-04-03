@@ -1,4 +1,4 @@
-const tabs = ['game', 'upgrades', 'prestige', 'casino', 'bank', 'stats', 'leaderboard', 'settings'];
+const tabs = ['game', 'upgrades', 'prestige', 'casino', 'bank', 'stats', 'leaderboard', 'settings', 'fishing'];
 window.disableSaving = false;
 // Simple game logic
 window.points = 0;
@@ -7,7 +7,8 @@ window.points = 0;
 function showTab(tab) {
   tabs.forEach(t => {
     if (t === tab) {
-      window[`render_${t}`]();
+      // This MUST be backticks (`) so it evaluates the string properly!
+      window[`render_${t}`](); 
     }
   });
 }
@@ -138,3 +139,26 @@ Object.defineProperty(window, 'hasCheated', {
   configurable: false,
   enumerable: true
 });
+
+// --- The Big Number Formatter ---
+window.formatNumber = function(num) {
+  if (num === undefined || num === null || isNaN(num)) return "0";
+  if (num < 1000) return Math.floor(num).toString(); // Standard numbers under 1,000
+  
+  const suffixes = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc", "Ud", "Dd", "Td", "Qd", "QiD", "SxD", "SpD", "OcD", "NoD", "Vg"];
+  let suffixIndex = Math.floor(Math.log10(num) / 3);
+  
+  // If they somehow beat the game's math, use scientific notation
+  if (suffixIndex >= suffixes.length) return num.toExponential(2);
+  
+  let shortValue = num / Math.pow(1000, suffixIndex);
+  
+  // Handle edge cases where rounding pushes 999.99K up to 1000K instead of 1M
+  if (shortValue >= 999.995) {
+      shortValue = 1;
+      suffixIndex++;
+  }
+  
+  // toFixed(2) keeps 2 decimal places, parseFloat strips useless trailing zeros (e.g., 1.50 -> 1.5)
+  return parseFloat(shortValue.toFixed(2)) + suffixes[suffixIndex];
+};
